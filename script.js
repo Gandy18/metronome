@@ -36,7 +36,7 @@ function toggleMetronome() {
 function handleScreenTap(e) {
   const isButtonOrEditable =
     e.target.closest("button") || e.target.isContentEditable;
-  if (!isInteractive) {
+  if (!isButtonOrEditable) {
     toggleMetronome();
   }
 }
