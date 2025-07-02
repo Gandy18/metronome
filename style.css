@@ -1,3 +1,9 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -15,7 +21,12 @@ body {
 #beat {
   font-size: 50vw;
   text-align: center;
+  overflow: visible;
+  width: 100%;
+  max-width: 100vw;
+  line-height: 1;
 }
+
 
 #controls {
   display: flex;
