@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  user-select: none;
+}
+
+#beat {
+  font-size: 10rem;
+  text-align: center;
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(117, 116, 116);
+  color: black;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+}
+
+button.large {
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+#bpm {
+  min-width: 120px;
+  text-align: center;
+  outline: none;
+  border-bottom: 2px solid white;
+  cursor: text;
+}
