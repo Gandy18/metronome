@@ -2,10 +2,23 @@ let bpm = 120;
 let isRunning = false;
 let intervalId = null;
 let currentBeat = 1;
+let lastTap = 0;
 
 const beatEl = document.getElementById("beat");
 const bpmEl = document.getElementById("bpm");
 const app = document.getElementById("app");
+
+function handleScreenTap(e) {
+  const isButtonOrEditable =
+    e.target.closest("button") || e.target.isContentEditable;
+  if (isButtonOrEditable) return;
+
+  const now = Date.now();
+  if (now - lastTap > 300) {
+    toggleMetronome();
+    lastTap = now;
+  }
+}
 
 function updateBPMDisplay() {
   bpmEl.textContent = `${bpm} BPM`;
@@ -79,7 +92,6 @@ document.getElementById("increase10").addEventListener("click", e => {
 document.getElementById("decrease10").addEventListener("click", e => {
   e.stopPropagation(); changeBPM(-10);
 });
-document.body.addEventListener("touchend", handleScreenTap);
-document.body.addEventListener("click", handleScreenTap);
+document.body.addEventListener("pointerup", handleScreenTap);
 
 updateBPMDisplay();
