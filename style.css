@@ -70,3 +70,14 @@ button.large {
   border-bottom: 4px solid white;
   cursor: text;
 }
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 300ms ease-out;
+}
+
