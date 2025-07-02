@@ -26,6 +26,13 @@ function updateBPMDisplay() {
 
 function updateBeat() {
   beatEl.textContent = currentBeat;
+
+  // Subtle pulse on beat 1
+  if (currentBeat === 1) {
+    beatEl.classList.add("pulse");
+    setTimeout(() => beatEl.classList.remove("pulse"), 300);
+  }
+
   currentBeat = currentBeat % 4 + 1;
 }
 
