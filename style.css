@@ -13,7 +13,7 @@ body {
 }
 
 #beat {
-  font-size: 10rem;
+  font-size: 30rem;
   text-align: center;
 }
 
@@ -22,8 +22,8 @@ body {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  font-size: 2rem;
-  margin-top: 1rem;
+  font-size: 6rem;
+  margin-top: 3rem;
   flex-wrap: wrap;
 }
 
@@ -38,19 +38,20 @@ button {
   border-radius: 8px;
   background-color: rgb(117, 116, 116);
   color: black;
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
+  font-size: 4rem;
+  padding: 1rem 2rem;
 }
 
 button.large {
-  font-size: 2rem;
-  padding: 1rem;
+  font-size: 5rem;
+  padding: 2rem;
 }
 
 #bpm {
-  min-width: 120px;
+  min-width: 300px;
+  font-size: 5rem;
   text-align: center;
   outline: none;
-  border-bottom: 2px solid white;
+  border-bottom: 4px solid white;
   cursor: text;
 }
