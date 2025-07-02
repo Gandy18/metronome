@@ -36,7 +36,7 @@ function toggleMetronome() {
 function handleScreenTap(e) {
   const isButtonOrEditable =
     e.target.closest("button") || e.target.isContentEditable;
-  if (!isButtonOrEditable) {
+  if (!isInteractive) {
     toggleMetronome();
   }
 }
@@ -79,10 +79,7 @@ document.getElementById("increase10").addEventListener("click", e => {
 document.getElementById("decrease10").addEventListener("click", e => {
   e.stopPropagation(); changeBPM(-10);
 });
-document.body.addEventListener("touchstart", handleScreenTap);
+document.body.addEventListener("touchend", handleScreenTap);
 document.body.addEventListener("click", handleScreenTap);
-
-app.addEventListener("touchstart", toggleMetronome);
-app.addEventListener("click", toggleMetronome); // for desktop
 
 updateBPMDisplay();
