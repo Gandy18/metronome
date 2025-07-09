@@ -102,3 +102,13 @@ document.getElementById("decrease10").addEventListener("click", e => {
 document.body.addEventListener("pointerup", handleScreenTap);
 
 updateBPMDisplay();
+
+function applyTapFeedback(btn) {
+  btn.classList.add("tap-feedback");
+  setTimeout(() => btn.classList.remove("tap-feedback"), 100);
+}
+
+["increase", "decrease", "increase10", "decrease10"].forEach(id => {
+  const btn = document.getElementById(id);
+  btn.addEventListener("pointerup", () => applyTapFeedback(btn));
+});
