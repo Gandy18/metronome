@@ -3,10 +3,17 @@ let isRunning = false;
 let intervalId = null;
 let currentBeat = 1;
 let lastTap = 0;
+let beatsPerMeasure = 4; // default time signature numerator
 
 const beatEl = document.getElementById("beat");
 const bpmEl = document.getElementById("bpm");
 const app = document.getElementById("app");
+const beatsSelector = document.getElementById("beats");
+
+beatsSelector.addEventListener("change", () => {
+  beatsPerMeasure = parseInt(beatsSelector.value, 10);
+  currentBeat = 1;
+});
 
 function handleScreenTap(e) {
   const isButtonOrEditable =
@@ -27,13 +34,12 @@ function updateBPMDisplay() {
 function updateBeat() {
   beatEl.textContent = currentBeat;
 
-  // Subtle pulse on beat 1
   if (currentBeat === 1) {
     beatEl.classList.add("pulse");
     setTimeout(() => beatEl.classList.remove("pulse"), 300);
   }
 
-  currentBeat = currentBeat % 4 + 1;
+  currentBeat = currentBeat % beatsPerMeasure + 1;
 }
 
 function startMetronome() {
