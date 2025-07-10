@@ -39,10 +39,17 @@ function updateBPMDisplay() {
 function updateBeat() {
   beatEl.textContent = currentBeat;
 
-  if (currentBeat === 1) {
+  const accented = currentBeat === 1;
+  if (accented) {
     beatEl.classList.add("pulse");
     setTimeout(() => beatEl.classList.remove("pulse"), 300);
   }
+
+  playTick(accented);
+
+  // Trigger subdivisions
+  const subdivisions = beatUnit === 8 ? 2 : beatUnit === 16 ? 4 : 1;
+  triggerSubPulses(subdivisions);
 
   currentBeat = currentBeat % beatsPerMeasure + 1;
 }
@@ -132,3 +139,23 @@ function applyTapFeedback(btn) {
   const btn = document.getElementById(id);
   btn.addEventListener("pointerup", () => applyTapFeedback(btn));
 });
+
+function triggerSubPulses(count) {
+  const container = document.getElementById("sub-pulses");
+  container.innerHTML = "";
+
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement("div");
+    dot.className = "sub-pulse";
+    container.appendChild(dot);
+
+    setTimeout(() => {
+      dot.style.opacity = "1";
+    }, i * 100); // staggered timing
+  }
+
+  setTimeout(() => {
+    container.innerHTML = "";
+  }, count * 100 + 300);
+}
+
