@@ -4,6 +4,7 @@ let intervalId = null;
 let currentBeat = 1;
 let lastTap = 0;
 let beatsPerMeasure = 4; // default time signature numerator
+let beatUnit = 4;
 
 const beatEl = document.getElementById("beat");
 const bpmEl = document.getElementById("bpm");
@@ -13,6 +14,10 @@ const beatsSelector = document.getElementById("beats");
 beatsSelector.addEventListener("change", () => {
   beatsPerMeasure = parseInt(beatsSelector.value, 10);
   currentBeat = 1;
+});
+
+unitSelector.addEventListener("change", () => {
+  beatUnit = parseInt(unitSelector.value, 10);
 });
 
 function handleScreenTap(e) {
@@ -43,7 +48,16 @@ function updateBeat() {
 }
 
 function startMetronome() {
-  const interval = 60000 / bpm;
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
+
+  // Calculate base note duration in milliseconds
+  const baseNoteValue = 4; // quarter note = standard
+  const noteRatio = baseNoteValue / beatUnit;
+
+  const interval = (60000 / bpm) * noteRatio;
+
   updateBeat();
   intervalId = setInterval(updateBeat, interval);
   isRunning = true;
