@@ -121,3 +121,27 @@ button.large {
 .pulse {
   animation: pulse 300ms ease-out;
 }
+
+#sub-pulses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.sub-pulse {
+  width: 2rem;
+  height: 2rem;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: flash 300ms ease-out;
+}
+
+@keyframes flash {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
