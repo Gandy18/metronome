@@ -10,6 +10,7 @@ const beatEl = document.getElementById("beat");
 const bpmEl = document.getElementById("bpm");
 const app = document.getElementById("app");
 const beatsSelector = document.getElementById("beats");
+const unitSelector = document.getElementById("unit");
 
 beatsSelector.addEventListener("change", () => {
   beatsPerMeasure = parseInt(beatsSelector.value, 10);
@@ -78,14 +79,6 @@ function stopMetronome() {
 function toggleMetronome() {
   if (document.activeElement === bpmEl) return; // prevent toggle if editing BPM
   isRunning ? stopMetronome() : startMetronome();
-}
-
-function handleScreenTap(e) {
-  const isButtonOrEditable =
-    e.target.closest("button") || e.target.isContentEditable;
-  if (!isButtonOrEditable) {
-    toggleMetronome();
-  }
 }
 
 // Handle BPM edits
