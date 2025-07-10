@@ -21,6 +21,23 @@ unitSelector.addEventListener("change", () => {
   beatUnit = parseInt(unitSelector.value, 10);
 });
 
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function playTick(accented = false) {
+  const oscillator = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
+
+  oscillator.type = "square";
+  oscillator.frequency.value = accented ? 1000 : 600;
+  gainNode.gain.value = 0.1;
+
+  oscillator.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+
+  oscillator.start();
+  oscillator.stop(audioCtx.currentTime + 0.05);
+}
+
 function handleScreenTap(e) {
   const isButtonOrEditable =
     e.target.closest("button") || e.target.isContentEditable;
